@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="join" method="post">
+        <table>
+         <!-- step1 시작-->
+       <tr colspan="2">
+        <th align ="left" bgcolor="gray" width ="400px" height ="50">Step1 : 아이디/비번 입력
+        </th>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            아이디 : <input type="text" name="id">
+        </td>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            비밀번호 : <input type="password" name ="pwS" maxlength="10">
+        </td>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            비밀번호 확인 : <input type="password" name="pw" maxlength="10">
+        </td>
+       </tr>
+       <!-- step1 끝 -->
+
+       <!-- step2 시작-->
+       <tr bgcolor = "gray">
+       <th align ="left" height ="50">Step2 : 개인정보</th>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            성별 : <input type="radio" name="gender" value="man"> 남성
+                  <input type="radio" name="gender" value="woman"> 여성
+        </td>
+       </tr>
+       
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            혈액형 : <select name ="bd">
+                    <option>A형</option>
+                    <option>B형</option>
+                    <option>O형</option>
+                    <option>AB형</option>
+            </select>
+        </td>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            생일 : <input type="date" name="birth" >
+        </td>
+       </tr>
+
+       <!-- step2 끝 -->
+
+      <!-- step3 시작-->
+       <tr bgcolor ="gray">
+        <th align ="left" height ="50"> Step3 : 선호도</th>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            취미 : <input type="checkbox" name ="hb" value ="soccer"> 축구
+                  <input type="checkbox" name ="hb" value ="baseball"> 야구
+                  <input type="checkbox" name ="hb" value ="basketball"> 농구
+        </td>
+       </tr>
+
+       <tr bgcolor ="whitesmoke" height ="35">
+        <td align ="center">
+            좋아하는 색깔 : <input type="color" name="fc">
+        </td>
+       </tr>
+
+       <!-- step3 끝 -->
+
+       <!-- step4 시작-->
+       <tr bgcolor="gray">
+        <th align ="left" height ="50">Step4 : 적고 싶은 말</th>
+       </tr>
+       
+       <tr>
+        <td>
+            <textarea cols="56" rows="5" name="write"></textarea>
+        </td>
+         <!-- step4 끝 -->
+       </tr>
+       <tr>
+        <td bgcolor="whitesmoke" align="center">
+       
+        <!-- 제출,초기화 -->
+      <input type="submit">
+      <input type="reset">
+        </td>
+       </tr>
+      
+
+
+        </table>
+
+     
+    </form>
+
+
+
+
+    
+</body>
+</html>
