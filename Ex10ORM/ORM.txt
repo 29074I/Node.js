@@ -1,0 +1,27 @@
+ORM(Object Relational Mapping) : 객체 - 관계 매핑
+즉 객체와 관계형 DB(오라클, mySQL...)의 데이터를 자동으로 매핑해주는 도구
+
+ex) Spring-JPA, node - Sequelize
+
+// ORM을 사용하기 위해 터미널에 입력하는 것들
+1. Sequelize 설치
+2. Sequelize-cli은 폴더 구조를 만드는 명령문 사용하기 위해 설치
+3. mysql2설치
+4. npx sequelize init이라는 명령어를 입력하여 기본 폴더 구조 만듦(sequelize-cli를 설치해야 사용 가능)
+
+    1) config : DB연결에 필요한 정보((dev)개발, (test)테스트, (product)배포)
+    2) migrations : DB변경에 대한 기록 다음 파일 보관(만약 이번 설정으로 되돌리고 싶을 때 사용)
+    3) models : 테이블에 대한 객체 정의
+    4) seeders : 테이블 안에 자동으로 기본데이터를 넣고 싶을 때
+5. config.js 수정 -> 실제 사용할 db정보로 변경
+6. 'User' 객체 정의할 건데 -> models폴더 안에 정의
+7. index -> 객체 사용 정의 /->models폴더
+8. app.js -> sequelize설정
+
+
+** seed 사용 
+1. seed 생성
+    - npx sequelize seed:generate --name 테이블이름
+2. seed 실행
+    -npx sequelize db:seed --seed 파일명.js (파일 1개 실행할 때)
+    - npx sequelize-cli db:seed:all (전체 실행)
