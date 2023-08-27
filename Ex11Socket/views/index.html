@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 클라이언트 -->
+    소켓 통신
+
+    <!-- node.js에서 제공하기 떄문에 바로 사용 가능 -->
+    <script src="/socket.io/socket.io.js"></script>  
+    <script>
+        // 클라이언트 소켓 객체 생성
+        const socket = io.connect('http://localhost:8888', {
+            path : '/socket.io'
+        })
+
+        socket.on('news', function(data){
+            console.log(data)
+            socket.emit('reply', 'Ok') //서버로 다시 메세지 보냄
+        })
+    </script>
+</body>
+</html>

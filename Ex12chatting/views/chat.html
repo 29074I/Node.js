@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <fieldset>
+        <legend>채팅 내용</legend>
+        <!-- class지정 -> mine이면 내 채탕으로 오른쪽 출력, 다른 사람은 other 왼쪽 출력 -->
+        <div id="chat-list">
+            {% for chat in chats %}
+                {% if chat.userid === userid%}
+                    <div class="mine">
+                        <div>{{chat.userid}}</div>
+                        <div>{{chat.chat}}</div>
+                    </div>
+                {% else %}
+                    <div class="other">
+                        <div>{{chat.userid}}</div>
+                        <div>{{chat.chat}}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </fieldset>
+    <!-- 비동기 방식으로 처리할 거기 때문에 action지정 안함 -->
+    <form id="chat-form">
+        <input type="text" id="chat-input" name="chatinput">
+        <input type="submit" value="전송">
+    </form>
+
+    <!-- axios사용하기 위한 src -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <!-- socket 사용하기 위한 src -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>    
+        const socket = io.connect('http://localhost:8888/chat',{// /chat : chat 네임 스페이스 지정
+            
+            path : '/socket.io'
+        })      
+        
+        socket.on('chat', function(data){
+            console.log(data)
+            const div = document.createElement('div')
+            if(data.userid === '{{userid}}'){ //로그인한 클라이언트가 입력한 채팅이라면
+                div.classList.add('mine')
+            }else{
+                div.classList.add('other')
+            }
+            // 아이디 출력 div
+            const divId = document.createElement('div')
+            divId.textContent = data.userid
+            div.appendChild(divId) //여기서 만든 div태그를 위의 div태그의 자식요소로 들어감
+            // 채팅출력 div
+            const divChat = document.createElement('div')
+            divChat.textContent = data.chat
+            div.appendChild(divChat)
+            //#chat-list에 div 추가
+            document.getElementById('chat-list').appendChild(div)
+
+        })
+                                            //e : event로 submit이벤트를 의미
+        document.getElementById('chat-form').addEventListener('submit', function(e){
+            e.preventDefault() //서버로 바로 요청하는 기본 기능 수행x
+            // console.log(e.target.chatinput.value) //name.value
+            if(e.target.chatinput.value){
+                // 서버로 채팅내용 전송
+                axios.post('/chat/{{roomid}}/insert', {
+                    chat : e.target.chatinput.value //json형태
+                })
+                .then((data)=>{console.log(data)})
+                .catch((err)=>{console.log(err)})
+            }
+        })
+    </script>
+</body>
+</html>
